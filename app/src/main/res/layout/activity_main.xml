@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <org.sld.htmle.CodeEditor
+        android:id="@+id/editor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/editorTextColorHint"
+        android:gravity="start"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:hint="@string/enter_html_code" />
+
+</RelativeLayout>

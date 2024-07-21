@@ -1,0 +1,45 @@
+
+plugins {
+    id 'com.android.application'
+    
+}
+
+android {
+    namespace 'org.sld.htmle'
+    compileSdk 33
+    
+    defaultConfig {
+        applicationId "org.sld.htmle"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        
+        vectorDrawables { 
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        viewBinding false
+        
+    }
+    
+}
+
+dependencies {
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+}

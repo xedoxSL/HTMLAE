@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HTML - AE</string>
+    <string name="enter_html_code">Редактор HTML разметки</string>
+    <string name="run_code">Запустить код</string>
+      <string name="open_settings">Открыть настройки</string>
+</resources>

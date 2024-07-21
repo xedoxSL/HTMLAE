@@ -1,7 +1,6 @@
 
 plugins {
     id 'com.android.application'
-    
 }
 
 android {
@@ -12,8 +11,8 @@ android {
         applicationId "org.sld.htmle"
         minSdk 21
         targetSdk 33
-        versionCode 1
-        versionName "v0.0.1 alpha"
+        versionCode 2
+        versionName "v0.0.2 alpha"
         
         vectorDrawables { 
             useSupportLibrary true
@@ -34,7 +33,6 @@ android {
 
     buildFeatures {
         viewBinding false
-        
     }
     
 }

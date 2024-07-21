@@ -3,11 +3,16 @@
 
     <item
         android:id="@+id/run"
-        android:title="@string/run_code" />
+        android:title="@string/run_code"
+        android:icon="@drawable/ic_run"
+        android:showAsAction="ifRoom"
+    />
+
     <item
         android:id="@+id/settings"
-        android:title="@string/open_settings" />
-
-    <!-- in developing -->
+        android:title="@string/open_settings"
+        android:icon="@drawable/ic_settings"
+        android:showAsAction="ifRoom"
+    />
 
 </menu>

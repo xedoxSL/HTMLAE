@@ -1,5 +1,6 @@
 package org.sld.htmle;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.webkit.WebSettings;
@@ -27,4 +28,13 @@ public class OutputActivity extends AppCompatActivity {
 
         webView.loadData(htmlCode, "text/html", "UTF-8");
     }
+    
+    @Override
+    
+    public void onBackPressed() {
+       
+        startActivity(new Intent(this, EditorActivity.class));
+        finish();
+    }
+    
 }

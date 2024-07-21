@@ -6,22 +6,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class EditorActivity extends AppCompatActivity {
 
     private CodeEditor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        
+        setContentView(R.layout.activity_editor);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         editor = findViewById(R.id.editor);
         editor.setContext(this);
         editor.setText(IDESettings.getString(getApplicationContext(), "code"));
-
+        try {
+            int getTextSize = IDESettings.getInt(getApplicationContext(), "textSize");
+            editor.setTextSize(getTextSize);
+        } catch (Exception e) {
+        }
         Token[] tokens = {
             new Token(".*", getColor(R.color.textColor)),
             new Token("true|false", getColor(R.color.keyword)),
@@ -38,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         save();
         super.onBackPressed();
     }
@@ -54,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.run) {
             save();
             startActivity(new Intent(this, OutputActivity.class));
+            finish();
             return true;
         } else if (item.getItemId() == R.id.settings) {
             save();
             startActivity(new Intent(this, SettingsActivity.class));
+            finish();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

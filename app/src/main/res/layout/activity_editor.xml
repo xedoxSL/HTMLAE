@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/action_bar"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:gravity="left|center_vertical"
+        android:titleTextColor="@color/white"
+        app:titleTextColor="@color/white">
+      
+    </androidx.appcompat.widget.Toolbar>
+
+
     <org.sld.htmle.CodeEditor
         android:id="@+id/editor"
         android:layout_width="match_parent"
@@ -16,6 +29,7 @@
         android:gravity="start"
         android:textSize="25sp"
         android:padding="5dp"
-        android:hint="@string/enter_html_code" />
+        android:hint="@string/enter_html_code"
+        android:layout_below="@+id/toolbar" />
 
 </RelativeLayout>

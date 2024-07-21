@@ -1,11 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style
-        name="AppTheme"
-        parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/action_bar</item>
-        <item name="colorPrimaryDark">@color/action_bar</item>
+     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
     </style>
 
+    
 
 </resources>

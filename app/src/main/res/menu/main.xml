@@ -15,4 +15,11 @@
         android:showAsAction="ifRoom"
     />
 
+    <item
+        android:id="@+id/regex"
+        android:title="@string/regex"
+        android:showAsAction="ifRoom"
+    />
+
+
 </menu>

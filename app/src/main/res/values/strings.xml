@@ -5,4 +5,8 @@
     <string name="run_code">Запустить код</string>
     <string name="open_settings">Открыть настройки</string>
     <string name="textSize">Размер текста в редакторе</string>
+    <string name="regex">Регулярное выражение</string>
+    <string name="word_for_replace">Слово для замены</string>
+    <string name="replace">Заменить</string>
+    <string name="find">Найти</string>
 </resources>

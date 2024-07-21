@@ -13,8 +13,8 @@
         android:background="@color/action_bar"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:gravity="left|center_vertical"
-        android:titleTextColor="@color/white"
-        app:titleTextColor="@color/white">
+        
+       >
       
     </androidx.appcompat.widget.Toolbar>
 

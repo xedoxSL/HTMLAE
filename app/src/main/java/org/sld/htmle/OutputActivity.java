@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,6 +16,9 @@ public class OutputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_output);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         WebView webView = findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
@@ -28,13 +32,10 @@ public class OutputActivity extends AppCompatActivity {
 
         webView.loadData(htmlCode, "text/html", "UTF-8");
     }
-    
+
     @Override
-    
     public void onBackPressed() {
-       
         startActivity(new Intent(this, EditorActivity.class));
         finish();
     }
-    
 }

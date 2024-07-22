@@ -3,6 +3,7 @@ package org.sld.htmle;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.style.BackgroundColorSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import static android.view.ViewGroup.LayoutParams;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -94,32 +97,42 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     private void showRegexMenu() {
-
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popup_regex, null);
 
         PopupWindow popupWindow =
                 new PopupWindow(view, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
-
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        EditText regex, word_find;
-        regex = view.findViewById(R.id.word_for_find);
-        word_find = view.findViewById(R.id.word_for_replace);
+        EditText regex = view.findViewById(R.id.word_for_find);
+        EditText wordFind = view.findViewById(R.id.word_for_replace);
 
-        Button replace, find;
-        replace = view.findViewById(R.id.replace);
-        find = view.findViewById(R.id.find);
+        Button replace = view.findViewById(R.id.replace);
+        Button find = view.findViewById(R.id.find);
 
         View.OnClickListener listener =
                 new View.OnClickListener() {
-
                     @Override
                     public void onClick(View view) {
-                        if(view == replace){
-                            
+                        if (view == replace) {
+                            String text = editor.getText().toString();
+                            Matcher m = Pattern.compile(regex.getText().toString()).matcher(text);
+                            StringBuilder out = new StringBuilder();
+                            int lastEnd = 0;
+                            while (m.find()) {
+                                out.append(text.substring(lastEnd, m.start()));
+                                out.append(wordFind.getText());
+                                lastEnd = m.end();
+                            }
+                            out.append(text.substring(lastEnd));
+                            editor.setText(out.toString());
+                        } else if (view == find) {
+                            editor.coincidencesHighlight( regex.getText().toString());
                         }
+                        popupWindow.dismiss();
                     }
                 };
+        find.setOnClickListener(listener);
+        replace.setOnClickListener(listener);
     }
 }

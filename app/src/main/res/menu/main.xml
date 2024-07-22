@@ -4,25 +4,17 @@
         android:id="@+id/run"
         android:title="@string/run_code"
         android:icon="@drawable/ic_run"
-        android:showAsAction="ifRoom"
         android:orderInCategory="1"
     />
     <item
         android:id="@+id/settings"
         android:title="@string/open_settings"
         android:icon="@drawable/ic_settings"
-        android:showAsAction="ifRoom"
         android:orderInCategory="2"
     />
-<<<<<<< HEAD
-=======
-
     <item
         android:id="@+id/regex"
         android:title="@string/regex"
-        android:showAsAction="ifRoom"
+        android:orderInCategory="3"
     />
-
-
->>>>>>> 46cba9f04e7ac27588e1241197d4e811b112452d
 </menu>

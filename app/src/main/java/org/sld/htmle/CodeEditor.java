@@ -9,6 +9,7 @@ import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -21,8 +22,8 @@ public final class CodeEditor extends EditText {
 
     private ArrayList<Token> tokens;
     private Context context;
-    
-    public void setContext(Context context){
+
+    public void setContext(Context context) {
         this.context = context;
     }
 
@@ -57,6 +58,7 @@ public final class CodeEditor extends EditText {
 
                     @Override
                     public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+
                         syntaxHighlight();
                     }
 
@@ -65,10 +67,29 @@ public final class CodeEditor extends EditText {
                 });
     }
 
-    private void syntaxHighlight() {
+    public void coincidencesHighlight(String regex) {
+
+        Matcher m = Pattern.compile(regex).matcher(getText().toString());
+
+        while (m.find()) {
+            getText()
+                    .setSpan(
+                            new BackgroundColorSpan(context.getColor(R.color.selections)),
+                            m.start(),
+                            m.end(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+    }
+
+    public void syntaxHighlight() {
         Pattern p;
         Matcher m;
-        getText().setSpan(new ForegroundColorSpan(context.getColor(R.color.textColor)), 0, getText().toString().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getText()
+                .setSpan(
+                        new BackgroundColorSpan(Color.parseColor("#00000000")),
+                        0,
+                        getText().toString().length(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         String text = getText().toString();
         for (Token token : tokens) {
             try {

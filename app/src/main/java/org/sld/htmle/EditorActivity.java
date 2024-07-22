@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -100,5 +102,24 @@ public class EditorActivity extends AppCompatActivity {
                 new PopupWindow(view, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        EditText regex, word_find;
+        regex = view.findViewById(R.id.word_for_find);
+        word_find = view.findViewById(R.id.word_for_replace);
+
+        Button replace, find;
+        replace = view.findViewById(R.id.replace);
+        find = view.findViewById(R.id.find);
+
+        View.OnClickListener listener =
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if(view == replace){
+                            
+                        }
+                    }
+                };
     }
 }

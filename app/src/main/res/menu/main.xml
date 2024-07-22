@@ -14,4 +14,15 @@
         android:showAsAction="ifRoom"
         android:orderInCategory="2"
     />
+<<<<<<< HEAD
+=======
+
+    <item
+        android:id="@+id/regex"
+        android:title="@string/regex"
+        android:showAsAction="ifRoom"
+    />
+
+
+>>>>>>> 46cba9f04e7ac27588e1241197d4e811b112452d
 </menu>

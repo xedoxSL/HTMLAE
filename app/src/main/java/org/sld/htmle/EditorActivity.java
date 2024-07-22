@@ -1,12 +1,21 @@
 package org.sld.htmle;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.PopupWindow;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import static android.view.ViewGroup.LayoutParams;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -66,6 +75,9 @@ public class EditorActivity extends AppCompatActivity {
             startActivity(new Intent(this, SettingsActivity.class));
             finish();
             return true;
+        } else if (item.getItemId() == R.id.regex) {
+            showRegexMenu();
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -79,5 +91,35 @@ public class EditorActivity extends AppCompatActivity {
 
     private void save() {
         IDESettings.saveString(getApplicationContext(), "code", editor.getText().toString());
+    }
+
+    private void showRegexMenu() {
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.popup_regex, null);
+
+        PopupWindow popupWindow =
+                new PopupWindow(view, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        EditText regex, word_find;
+        regex = view.findViewById(R.id.word_for_find);
+        word_find = view.findViewById(R.id.word_for_replace);
+
+        Button replace, find;
+        replace = view.findViewById(R.id.replace);
+        find = view.findViewById(R.id.find);
+
+        View.OnClickListener listener =
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if(view == replace){
+                            
+                        }
+                    }
+                };
     }
 }

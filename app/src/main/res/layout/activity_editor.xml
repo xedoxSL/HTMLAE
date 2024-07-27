@@ -32,6 +32,7 @@
         android:padding="5dp"
         android:hint="@string/enter_html_code"
         android:layout_below="@+id/toolbar"
-        android:fontFamily="@font/editorFont" />
+        android:fontFamily="@font/editor_f
+        ont" />
 
 </RelativeLayout>

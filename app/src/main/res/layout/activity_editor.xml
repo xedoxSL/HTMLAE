@@ -17,6 +17,8 @@
         app:titleTextColor="@color/white">
       
     </androidx.appcompat.widget.Toolbar>
+    
+    
 
     <org.sld.htmle.CodeEditor
         android:id="@+id/editor"
@@ -29,6 +31,7 @@
         android:textSize="25sp"
         android:padding="5dp"
         android:hint="@string/enter_html_code"
-        android:layout_below="@+id/toolbar" />
+        android:layout_below="@+id/toolbar"
+        android:fontFamily="@font/editorFont" />
 
 </RelativeLayout>

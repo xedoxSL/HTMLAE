@@ -46,6 +46,7 @@ public class EditorActivity extends AppCompatActivity {
             new Token("\\d+", getColor(R.color.number)),
             new Token("<[a-zA-Z]+|</[a-zA-Z]+>", getColor(R.color.func)),
             new Token("<![a-zA-Z]+|</![a-zA-Z]+>", getColor(R.color.func)),
+            new Token("(\".*\")|(\'.*\')", getColor(R.color.string)),
             new Token(
                     "(\\()|(\\))|(\\+)|(\\-)|(\\*)|(\\/)|(\\=)|(\\<)|(\\>)",
                     getColor(R.color.keyword)),
@@ -127,7 +128,7 @@ public class EditorActivity extends AppCompatActivity {
                             out.append(text.substring(lastEnd));
                             editor.setText(out.toString());
                         } else if (view == find) {
-                            editor.coincidencesHighlight( regex.getText().toString());
+                            editor.coincidencesHighlight(regex.getText().toString());
                         }
                         popupWindow.dismiss();
                     }

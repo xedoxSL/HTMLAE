@@ -1,18 +1,15 @@
 package org.sld.htmle;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -49,16 +46,37 @@ public final class CodeEditor extends EditText {
     private final void init() {
         tokens = new ArrayList<>();
         setHorizontallyScrolling(true);
+
+        setOnKeyListener(
+                new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        if (event.getAction() == KeyEvent.ACTION_DOWN
+                                && event.getUnicodeChar() == '(') {
+                            StringBuilder output = new StringBuilder();
+                            int selectionStart = getSelectionStart();
+                            String text = getText().toString();
+                            output.append(
+                                    text.substring(0, selectionStart)
+                                            + ')'
+                                            + text.substring(selectionStart + 1, text.length()));
+                            setText(output.toString());
+
+                            
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+
         addTextChangedListener(
                 new TextWatcher() {
-
                     @Override
                     public void beforeTextChanged(
                             CharSequence arg0, int arg1, int arg2, int arg3) {}
 
                     @Override
                     public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-
                         syntaxHighlight();
                     }
 

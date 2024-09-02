@@ -7,35 +7,38 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import java.util.List;
 
-public class ProjectsAdapter extends BaseAdapter {
+public final class ProjectsAdapter extends BaseAdapter {
 
-    private List<Project> projects;
+    private List<Project> list;
 
-    public ProjectsAdapter(List<Project> projects) {
-        this.projects = projects;
+    public ProjectsAdapter(List<Project> list) {
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return projects.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int arg0) {
-        return projects.get(arg0);
+        return list.get(arg0);
     }
 
     @Override
     public long getItemId(int arg0) {
-        return arg0;
+        return 0;
     }
 
     @Override
     public View getView(int pos, View view, ViewGroup parent) {
-        TextView name = (TextView) view.findViewById(R.id.project_name);
-        TextView desk = (TextView) view.findViewById(R.id.project_description);
-        name.setText(projects.get(pos).getName());
-        desk.setText(projects.get(pos).getDesk());
+        if (view == null) {
+            view =
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.item_project, parent, false);
+        }
+        TextView name = view.findViewById(R.id.project_name);
+        name.setText(list.get(pos).getName());
         return view;
     }
 }

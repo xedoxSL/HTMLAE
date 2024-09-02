@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="textColor">#000000</color>
     <color name="number">#5D95CE</color>
     <color name="keyword">#E77824</color>
     <color name="string">#6FA34F</color>

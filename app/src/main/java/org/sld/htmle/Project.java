@@ -1,12 +1,20 @@
 package org.sld.htmle;
 
-public class Project {
-    private String name;
-    private String desk;
+import java.io.File;
 
-    public Project(String name, String desk) {
+public final class Project {
+    private String name;
+    private File codeFile;
+    private File config;
+    
+    public Project(){
+        
+    }
+
+    public Project(String name, File codeFile, File config) {
         this.name = name;
-        this.desk = desk;
+        this.codeFile = codeFile;
+        this.config = config;
     }
 
     public String getName() {
@@ -17,11 +25,19 @@ public class Project {
         this.name = name;
     }
 
-    public String getDesk() {
-        return this.desk;
+    public File getCodeFile() {
+        return this.codeFile;
     }
 
-    public void setDesk(String desk) {
-        this.desk = desk;
+    public void setCodeFile(File codeFile) {
+        this.codeFile = codeFile;
+    }
+
+    public File getConfig() {
+        return this.config;
+    }
+
+    public void setConfig(File config) {
+        this.config = config;
     }
 }

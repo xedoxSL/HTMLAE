@@ -23,13 +23,7 @@ public class OutputActivity extends AppCompatActivity {
         WebView webView = findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webView.getSettings().setJavaScriptEnabled(true);
-
-        // String htmlCode = "<!DOCTYPE html><html><head><title>My Web
-        // Page</title></head><body><h1>Hello, World!</h1></body></html>";
-        // webView.loadData(htmlCode, "text/html", "UTF-8");
-
-        String htmlCode = IDESettings.getString(getApplicationContext(), "code");
-
+        String htmlCode = getIntent().getStringExtra("code");
         webView.loadData(htmlCode, "text/html", "UTF-8");
     }
 

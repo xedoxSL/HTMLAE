@@ -11,8 +11,8 @@ android {
         applicationId "org.sld.htmle"
         minSdk 21
         targetSdk 33
-        versionCode 2
-        versionName "v0.0.2 alpha"
+        versionCode 3
+        versionName "v0.0.3 alpha"
         
         vectorDrawables { 
             useSupportLibrary true

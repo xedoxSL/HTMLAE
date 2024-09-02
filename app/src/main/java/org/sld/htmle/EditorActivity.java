@@ -63,14 +63,20 @@ public class EditorActivity extends AppCompatActivity {
             Intent i = new Intent(EditorActivity.this, OutputActivity.class);
             i.putExtra("code", editor.getText().toString());
             startActivity(i);
+            saveCode();
+            finish();
         } else if (item.getItemId() == R.id.save) {
-            File codeFile = new File(projectPath, "index.html");
+            saveCode();
+        }
+        return true;
+    }
+    
+    private final void saveCode() {
+        File codeFile = new File(projectPath, "index.html");
             try (FileWriter writer = new FileWriter(codeFile)) {
                 writer.write(editor.getText().toString());
             } catch (IOException e) {
                 System.out.println("Ошибка записи в файл: " + e.getMessage());
             }
-        }
-        return true;
     }
 }

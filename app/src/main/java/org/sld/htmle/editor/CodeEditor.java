@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
@@ -20,7 +22,7 @@ public final class CodeEditor extends EditText {
 
     private ArrayList<Token> tokens;
     private Context context;
-    
+
     public final void setContext(Context context) {
         this.context = context;
     }
@@ -47,5 +49,55 @@ public final class CodeEditor extends EditText {
     private final void init() {
         tokens = new ArrayList<>();
         setHorizontallyScrolling(true);
+        defaultKeywords();
+        hightlightKeywords();
+        addTextChangedListener(
+                new TextWatcher() {
+
+                    @Override
+                    public void beforeTextChanged(
+                            CharSequence arg0, int arg1, int arg2, int arg3) {}
+
+                    @Override
+                    public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                        getText()
+                                .setSpan(
+                                        new BackgroundColorSpan(Color.TRANSPARENT),
+                                        0,
+                                        getText().length(),
+                                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        hightlightKeywords();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable arg0) {}
+                });
+    }
+
+    private void hightlightKeywords() {
+        Matcher m;
+        for (Token key : tokens) {
+            m = Pattern.compile(key.getKeyword()).matcher(getText().toString());
+            while (m.find()) {
+                getText()
+                        .setSpan(
+                                new ForegroundColorSpan(key.getColor()),
+                                m.start(),
+                                m.end(),
+                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+    }
+
+    private final void defaultKeywords() {
+        Token[] keywords = {
+            new Token(".*?", context.getColor(R.color.textColor)),
+            new Token("(\\d+)", context.getColor(R.color.number)),
+            new Token("(\\b[a-zA-Z\\d_]+\\()", context.getColor(R.color.func)),
+            new Token("(<|>|/|\\(|\\))", context.getColor(R.color.tag)),
+            new Token("<!--.*?-->", context.getColor(R.color.string)),
+            new Token("\"([^\"]*)\"", context.getColor(R.color.string))
+        };
+        setKeywords(keywords);
     }
 }

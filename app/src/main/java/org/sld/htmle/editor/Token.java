@@ -1,17 +1,17 @@
 package org.sld.htmle.editor;
 
 public final class Token {
-    
-    private final String keywords;
+
+    private final String keyword;
     private final int color;
 
-    public Token(String keywords, int color) {
-        this.keywords = keywords;
+    public Token(String keyword, int color) {
+        this.keyword = keyword;
         this.color = color;
     }
 
-    public String getKeywords() {
-        return this.keywords;
+    public String getKeyword() {
+        return this.keyword;
     }
 
     public int getColor() {

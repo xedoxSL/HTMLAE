@@ -10,4 +10,5 @@
     <string name="project_name_cannot_be_empty">Название проекта не может быть пустым!</string>
     <string name="save">Сохранить</string>
     <string name="run_preview">Запустить предросмотр</string>
+    <string name="">Запустить предросмотр</string>
 </resources>

@@ -18,6 +18,7 @@ public class EditorActivity extends AppCompatActivity {
 
     private CodeEditor editor;
     private String projectPath;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,11 @@ public class EditorActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         editor = findViewById(R.id.editor);
         editor.setContext(this);
 
-        String name = getIntent().getStringExtra("name");
+        name = getIntent().getStringExtra("name");
         projectPath =
                 Environment.getExternalStorageDirectory().getAbsolutePath()
                         + "/HTMLAEProjects/"
@@ -62,21 +63,52 @@ public class EditorActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.run_preview) {
             Intent i = new Intent(EditorActivity.this, OutputActivity.class);
             i.putExtra("code", editor.getText().toString());
+            i.putExtra("projectName", name);
             startActivity(i);
             saveCode();
             finish();
         } else if (item.getItemId() == R.id.save) {
             saveCode();
+        } else if (item.getItemId() == R.id.regex) {
+            showRegexMenu();
+        } else if (item.getItemId() == android.R.id.home) {
+            Intent i = new Intent(this, ProjectsActivity.class);
+            startActivity(i);
         }
         return true;
     }
-    
+
     private final void saveCode() {
         File codeFile = new File(projectPath, "index.html");
-            try (FileWriter writer = new FileWriter(codeFile)) {
-                writer.write(editor.getText().toString());
-            } catch (IOException e) {
-                System.out.println("Ошибка записи в файл: " + e.getMessage());
-            }
+        try (FileWriter writer = new FileWriter(codeFile)) {
+            writer.write(editor.getText().toString());
+        } catch (IOException e) {
+            System.out.println("Ошибка записи в файл: " + e.getMessage());
+        }
+    }
+
+    private final void showRegexMenu() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(getString(R.string.regex));
+
+        builder.setPositiveButton(
+                "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Действия при нажатии на кнопку "OK"
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNegativeButton(
+                "Отмена",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Действия при нажатии на кнопку "Отмена"
+                        dialog.dismiss();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

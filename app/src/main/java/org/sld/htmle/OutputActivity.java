@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class OutputActivity extends AppCompatActivity {
+    
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,10 @@ public class OutputActivity extends AppCompatActivity {
         WebSettings webSettings = webView.getSettings();
         webView.getSettings().setJavaScriptEnabled(true);
         String htmlCode = getIntent().getStringExtra("code");
+        String name = getIntent().getStringExtra("projectName");
         webView.loadData(htmlCode, "text/html", "UTF-8");
+        
+        toolbar.setSubtitle(name);
     }
 
     @Override

@@ -4,8 +4,5 @@
         android:id="@+id/create_project"
         android:title="@string/create_project" />
     
-    <item
-        android:id="@+id/run_preview"
-        android:title="@string/run_preview" />
 
 </menu>

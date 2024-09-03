@@ -5,7 +5,7 @@
         parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/toolbar</item>
         <item name="colorPrimaryDark">@color/toolbar</item>
-        <item name="iconTint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
 

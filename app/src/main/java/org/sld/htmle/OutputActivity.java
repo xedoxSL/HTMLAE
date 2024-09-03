@@ -34,7 +34,9 @@ public class OutputActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, EditorActivity.class));
+        Intent i = new Intent(this, EditorActivity.class);
+        i.putExtra("projectName", name);
+        startActivity(i);
         finish();
     }
 }

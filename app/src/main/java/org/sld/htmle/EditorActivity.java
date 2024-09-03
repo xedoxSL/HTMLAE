@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -34,7 +35,7 @@ public class EditorActivity extends AppCompatActivity {
         editor = findViewById(R.id.editor);
         editor.setContext(this);
 
-        name = getIntent().getStringExtra("name");
+        name = getIntent().getStringExtra("projectName");
         projectPath =
                 Environment.getExternalStorageDirectory().getAbsolutePath()
                         + "/HTMLAEProjects/"
@@ -94,30 +95,36 @@ public class EditorActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(EditorActivity.this);
         builder.setTitle(getString(R.string.regex));
 
-        EditText regex = new EditText(EditorActivity.this);
-        regex.setHint(getString(R.string.regular_expression));
-        builder.setView(regex);
+        LinearLayout layout = new LinearLayout(EditorActivity.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
 
-        EditText textForReplace = new EditText(EditorActivity.this);
-        regex.setHint(getString(R.string.regular_expression));
-        builder.setView(regex);
+        final EditText regexInput = new EditText(EditorActivity.this);
+        regexInput.setHint(getString(R.string.regular_expression));
+        layout.addView(regexInput);
+
+        final EditText replaceTextInput = new EditText(EditorActivity.this);
+        replaceTextInput.setHint(getString(R.string.textForReplace));
+        layout.addView(replaceTextInput);
+
+        builder.setView(layout);
 
         builder.setPositiveButton(
                 getString(R.string.find),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         editor.spanBackground(
-                                regex.getText().toString(), getColor(R.color.selections));
+                                regexInput.getText().toString(), getColor(R.color.selections));
                         dialog.cancel();
                     }
                 });
 
         builder.setNegativeButton(
-                getString(R.string.textForReplace),
+                getString(R.string.replace),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         editor.replace(
-                                regex.getText().toString(), textForReplace.getText().toString());
+                                regexInput.getText().toString(),
+                                replaceTextInput.getText().toString());
                         dialog.cancel();
                     }
                 });

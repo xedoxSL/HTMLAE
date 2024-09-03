@@ -1,4 +1,3 @@
-
 plugins {
     id 'com.android.application'
 }
@@ -9,13 +8,13 @@ android {
     
     defaultConfig {
         applicationId "org.sld.htmle"
-        minSdk 21
+        minSdk 30
         targetSdk 33
         versionCode 3
         versionName "v0.0.3 alpha"
         
         vectorDrawables { 
-            useSupportLibrary true
+            useSupportLibrary false
         }
     }
 

@@ -1,10 +1,13 @@
 package org.sld.htmle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -88,23 +91,42 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     private final void showRegexMenu() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditorActivity.this);
         builder.setTitle(getString(R.string.regex));
 
+        EditText regex = new EditText(EditorActivity.this);
+        regex.setHint(getString(R.string.regular_expression));
+        builder.setView(regex);
+
+        EditText textForReplace = new EditText(EditorActivity.this);
+        regex.setHint(getString(R.string.regular_expression));
+        builder.setView(regex);
+
         builder.setPositiveButton(
-                "OK",
+                getString(R.string.find),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Действия при нажатии на кнопку "OK"
-                        dialog.dismiss();
+                        editor.spanBackground(
+                                regex.getText().toString(), getColor(R.color.selections));
+                        dialog.cancel();
                     }
                 });
+
         builder.setNegativeButton(
-                "Отмена",
+                getString(R.string.textForReplace),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Действия при нажатии на кнопку "Отмена"
-                        dialog.dismiss();
+                        editor.replace(
+                                regex.getText().toString(), textForReplace.getText().toString());
+                        dialog.cancel();
+                    }
+                });
+
+        builder.setNeutralButton(
+                getString(R.string.cancel),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
                     }
                 });
 

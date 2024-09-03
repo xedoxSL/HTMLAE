@@ -100,4 +100,23 @@ public final class CodeEditor extends EditText {
         };
         setKeywords(keywords);
     }
+
+    public final void spanBackground(String regex, int color) {
+        Matcher m = Pattern.compile(regex).matcher(getText().toString());
+        while (m.find()) {
+            getText()
+                    .setSpan(
+                            new BackgroundColorSpan(color),
+                            m.start(),
+                            m.end(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+    }
+
+    public final void replace(String regex, String two) {
+        Matcher m = Pattern.compile(regex).matcher(getText().toString());
+        while (m.find()) {
+            getText().toString().replaceAll(m.group(), two);
+        }
+    }
 }

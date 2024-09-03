@@ -3,6 +3,7 @@
     <string name="app_name">HTML - AE</string>
     <string name="enter_html_code">Редактор HTML разметки</string>
     <string name="regex">RegEx</string>
+    <string name="regular_expression">Регулярное выражение (текст)</string>
     <string name="create_project">Создать проект</string>
     <string name="create">Создать</string>
     <string name="cancel">Отмена</string>
@@ -10,5 +11,7 @@
     <string name="project_name_cannot_be_empty">Название проекта не может быть пустым!</string>
     <string name="save">Сохранить</string>
     <string name="run_preview">Запустить предросмотр</string>
-    <string name="">Запустить предросмотр</string>
+    <string name="replace">Заменить</string>
+    <string name="find">Найти</string>
+    <string name="textForReplace">Текст для замены</string>
 </resources>

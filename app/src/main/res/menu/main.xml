@@ -2,10 +2,23 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/create_project"
         android:title="@string/create_project"
         android:icon="@drawable/ic_add"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/github"
+        android:title="@string/github"
+        android:icon="@drawable/ic_github"
+        app:showAsAction="ifRoom" />
+    
+     <item
+        android:id="@+id/telegram"
+        android:title="@string/creator"
+        android:icon="@drawable/ic_telegram"
         app:showAsAction="ifRoom" />
 
 </menu>

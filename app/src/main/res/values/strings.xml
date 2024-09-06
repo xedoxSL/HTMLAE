@@ -14,4 +14,9 @@
     <string name="replace">Заменить</string>
     <string name="find">Найти</string>
     <string name="textForReplace">Текст для замены</string>
+    <string name="github">Проект на GitHub</string>
+    <string name="creator">Создатель</string>
+    
+    <string name="link_github">https://github.com/xedoxSL/HTMLAE</string>
+    <string name="link_telegram">https://t.me/xedox_developer</string>
 </resources>

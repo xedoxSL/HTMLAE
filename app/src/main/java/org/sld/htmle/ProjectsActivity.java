@@ -67,7 +67,6 @@ public final class ProjectsActivity extends AppCompatActivity {
     }
 
     private final void updateProjectsList() {
-
         adapter = new ProjectsAdapter(readProjects());
         list.setAdapter(adapter);
     }
@@ -113,6 +112,14 @@ public final class ProjectsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.create_project) {
             showCreateProjectWindow();
+        } else if (item.getItemId() == R.id.github) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(getString(R.string.link_github)));
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.telegram) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(getString(R.string.link_telegram)));
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
